@@ -7,7 +7,7 @@ parser = Parser()
 
 binding = ('0.0.0.0', 25)
 dropSize = 1000000 # in bytes
-domainName = 'mockmail.io'
+domainName = 'mockbox.io'
 
 validAddresses = []
 
@@ -80,7 +80,7 @@ def newAddress():
     print 'Permitting email ' + randEmail
 
 server = CustomSMTPServer(binding, None)
-print 'Mockmail listening on', binding[0], 'on port', binding[1], '(no username or password necessary)'
+print 'Mockbox listening on', binding[0], 'on port', binding[1], '(no username or password necessary)'
 print 'Messages over', dropSize, 'bytes will be dropped'
 print '------------------------------------------------'
 newAddress()
