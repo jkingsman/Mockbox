@@ -1,4 +1,4 @@
-# mockbox
+# Mockbox
 Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alternative to [Mailtrap](https://mailtrap.io/): just quick and easy verification that your application is sending the emails you expect. 
 
 ## Local Server
