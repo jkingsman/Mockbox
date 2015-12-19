@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Mockbox.io</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  var mailSocket = new WebSocket("ws://localhost:9000");
+
+
+  var isFirstMessage = true;
+  mailSocket.onmessage = function(event) {
+    if (isFirstMessage) {
+      document.write('<h2>Send messages to ' + event.data + '</h2>')
+      document.write('<h4>SMTP server at localhost:25 (no/any authentication accepted - server, port, and recipient are all that matter)</h4><hr>')
+      isFirstMessage = false;
+    } else {
+      var mailObj = JSON.parse(event.data)
+      console.log(event.data)
+      document.write('<hr><strong>From:</strong>' + mailObj.from)
+      document.write('<br><strong>Subject:</strong>' + mailObj.subject)
+      document.write('<br><strong>IP:</strong>' + mailObj.fromIP[0])
+      document.write('<br><strong>Attachments:</strong>' + mailObj.attachments.length)
+    }
+  };
+</script>
+
+</html>
