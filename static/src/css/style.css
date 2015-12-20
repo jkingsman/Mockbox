@@ -1,0 +1,53 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+.warning-toast {
+  background-color: maroon;
+  line-height: initial;
+}
+
+.inlineCode {
+  font-family: monospace;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* make the icon in nav work on mobile */
+@media only screen and (max-width: 600px) {
+    .mobile-pad {
+        padding-top: 1rem !important;
+    }
+}
+
+.material-icons {
+  font-size: 30px !important;
+}
+
+/* thanks to http://stackoverflow.com/a/4861306 */
+.numberCircle {
+    border-radius: 50%;
+    display: inline-block;
+
+    width: 36px;
+    height: 36px;
+
+    background: #fff;
+    border: 2px solid #666;
+    color: #666;
+    text-align: center;
+
+    font: 32px Arial, sans-serif;
+}

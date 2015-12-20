@@ -1,0 +1,42 @@
+extends ../jade-components/main.jade
+
+block title
+	title Mockbox
+
+block content
+	main
+		.container
+			.section
+				// Icon Section
+				.row
+					.col.s12
+						h4 Mockbox is a simple, free platform for 
+							strong SMTP client testing.
+						p Need to be sure that your automated emails are going out with the content you expect, but don't want to provide your personal email credentials, or want a free alternative to Mailtrap? Use Mockbox.
+						h4 Get started!
+						h4(style='display: inline') &#9312;
+						h5(style='display: inline') Set your SMTP server to 
+							span#serverAddess.inlineCode [server]
+							|  on port 
+							span#serverPort.inlineCode [port]
+						br
+						h4(style='display: inline') &#9313;
+						h5(style='display: inline') Use any username and password (no encryption -- coming soon!)
+						br
+						h4(style='display: inline') &#9314;
+						h5(style='display: inline') Send an email to 
+							span#mailAddress.inlineCode [email]
+							a(href='#', id='copyLink', data-clipboard-text='address not loaded')
+								i.material-icons assignment
+						br
+						h4(style='display: inline') &#9315;
+						h5(style='display: inline') Your email will appear below, in real time!
+						hr
+				.row
+					.col.s12
+					p.center-align#noMessages
+						i.grey-text no messages yet!
+					ul.collection#messageCollection
+						
+block scripts
+	script(src='js/index.js')

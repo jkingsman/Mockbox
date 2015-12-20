@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+	head
+		block title
+		include ./head.jade
+	body        
+		nav.light-blue.lighten-1
+			.nav-wrapper.container
+				span
+					a#logo-container.brand-logo(href='/') 
+						i.material-icons.left.mobile-pad email
+						| Mockbox
+		block content
+
+		footer.page-footer
+			.footer-copyright
+				.container
+					| © 2015 
+					a.grey-text.text-lighten-4(href='http://jacksbrain.com') Jack Kingsman
+					|  (MIT Licensed) 
+					a.grey-text.text-lighten-4.right(href='https://github.com/jkingsman/Mockbox') Fork this on GitHub
+
+
+		script(src='lib.js')
+		block scripts
