@@ -13,10 +13,12 @@ block content
 						h4 Mockbox is a simple, free platform for 
 							strong SMTP client testing.
 						p Need to be sure that your automated emails are going out with the content you expect, but don't want to provide your personal email credentials, or want a free alternative to Mailtrap? Use Mockbox.
+						p 
+							strong Mockbox funnels emails straight from the SMTP interface to your browser - no sign up, no storage, no logins, no hassle. Quick, easy, and ephemeral.
 						h4 Get started!
 						h4(style='display: inline') &#9312;
 						h5(style='display: inline') Set your SMTP server to 
-							span#serverAddess.inlineCode [server]
+							span#serverAddress.inlineCode [server]
 							|  on port 
 							span#serverPort.inlineCode [port]
 						br
@@ -30,13 +32,22 @@ block content
 								i.material-icons assignment
 						br
 						h4(style='display: inline') &#9315;
-						h5(style='display: inline') Your email will appear below, in real time!
+						h5(style='display: inline') Your email will appear below*, in real time!
+						p * Emails will not be accessible, nor will you be able to recover or resume use of the address after you leave this page. Emails with total size >
+							span#dropSize
+							|  kB will not be displayed.
 						hr
 				.row
 					.col.s12
 					p.center-align#noMessages
 						i.grey-text no messages yet!
 					ul.collection#messageCollection
-						
+					html
+			#rawModal.modal
+				.modal-content
+					h4 Raw Message
+					textarea#rawArea(style='height: 20rem;')
+				.modal-footer
+					a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Close
 block scripts
 	script(src='js/index.js')

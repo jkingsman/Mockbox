@@ -44,7 +44,7 @@ gulp.task('css', function () {
 
 //lib
 gulp.task('js-lib', function () {
-  gulp.src(['./src/lib/jquery-2.1.1.min.js', './src/lib/materialize.js', './src/lib/clipboard.js'])
+  gulp.src(['./src/lib/jquery-2.1.1.min.js', './src/lib/materialize.js', './src/lib/clipboard.js', './src/lib/custom.js', './src/lib/notify.js'])
   .pipe(uglify())
   .pipe(concat('lib.js'))
   .pipe(gulp.dest('./dist'))
