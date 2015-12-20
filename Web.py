@@ -3,7 +3,7 @@ from twisted.web.server import Site
 from twisted.web.static import File
 from twisted.internet import reactor, task
 from Addresses import CustomAddress
-from Config import bindingPort, httpPort
+from Config import bindingPort, httpPort, dropSize
 import json
 
 openSockets = []
@@ -50,7 +50,7 @@ class WebHandler():
         def onOpen(self):
             print "Sent identification to " + self.id
             openSockets.append(self)
-            self.sendMessage(json.dumps([self.id, bindingPort]).encode("utf8"))
+            self.sendMessage(json.dumps([self.id, bindingPort, dropSize]).encode("utf8"))
 
         def onClose(self, wasClean, code, reason):
             print "Client connection closed with " + self.id
