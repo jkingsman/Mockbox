@@ -1,3 +1,5 @@
+# web
+httpPort = 80
 domain = 'mockbox.io'
 
 # SMTP
