@@ -79,7 +79,7 @@ function processMessage(event) {
   messages.push(mailObj);
   var messageID = messages.length - 1;
 
-  // do body sanity checking; SHOULD be only temporary until python packages them right
+  // do body sanity checking
   if (mailObj.body === null) {
     mailObj.body = '[no body]';
     messages.pop();
