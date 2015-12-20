@@ -43,6 +43,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
         emailObj['fromIP'] = peer
         emailObj['to'] = email.get('To')
         emailObj['subject'] = email.get('Subject')
+        emailObj['transferEncoding'] = email.get('Content-Transfer-Encoding')
         emailObj['attachments'] = []
 
         if email.is_multipart():
@@ -56,6 +57,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
                     attachment['name'] = part.get_filename()
                     attachment['type'] = part.get_content_type()
                     attachment['data'] = part.get_payload()
+                    attachment['transferEncoding'] = part.get('Content-Transfer-Encoding')
                     emailObj['attachments'].append(attachment)
         else:
             # not multipart; grab the body and run
