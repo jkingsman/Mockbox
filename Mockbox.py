@@ -2,20 +2,20 @@ from threading import Thread
 from Queue import Queue
 from twisted.python import log
 import time
-import Mailbox, WebSockets
+import Mailbox, Web
 import sys
 
 queue = Queue()
 MailboxThread = Thread(target=Mailbox.MailboxHandler, args=(queue,))
-WebSocketsThread = Thread(target=WebSockets.WebsocketsHandler, args=(queue,))
+WebThread = Thread(target=Web.WebHandler, args=(queue,))
 
 MailboxThread.setDaemon(True)
-WebSocketsThread.setDaemon(True)
+WebThread.setDaemon(True)
 
 log.startLogging(sys.stdout)
 
 MailboxThread.start()
-WebSocketsThread.start()
+WebThread.start()
 
 while True:
     try:
