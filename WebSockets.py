@@ -1,6 +1,7 @@
 from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol
 from twisted.internet import reactor, task
 from Addresses import CustomAddress
+from Config import bindingPort
 import json
 
 openSockets = []
@@ -40,7 +41,7 @@ class WebsocketsHandler():
         def onOpen(self):
             print "Sent identification to " + self.id
             openSockets.append(self)
-            self.sendMessage(self.id.encode("utf8"))
+            self.sendMessage(json.dumps([self.id, bindingPort]).encode("utf8"))
 
         def onClose(self, wasClean, code, reason):
             print "Client connection closed with " + self.id
