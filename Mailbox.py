@@ -34,7 +34,7 @@ class CustomSMTPServer(smtpd.SMTPServer):
 
         # begin assembling email object
         parser = Parser()
-        print 'Receiving message from:', mailFrom, '(', peer, ') to', mailTo
+        print 'Receiving message from:', mailFrom, peer, 'to', mailTo
         email = parser.parsestr(data)
 
         emailObj = {}
