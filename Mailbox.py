@@ -50,14 +50,13 @@ class CustomSMTPServer(smtpd.SMTPServer):
             for index, part in enumerate(email.get_payload()):
                 if index == 0:
                     # first object of multipart is probably body
-                    emailObj['body'] = email.get_payload(decode=True)
+                    emailObj['body'] = part.get_payload()
                 else:
                     attachment = {}
                     attachment['name'] = part.get_filename()
                     attachment['type'] = part.get_content_type()
                     attachment['data'] = part.get_payload()
                     emailObj['attachments'].append(attachment)
-
         else:
             # not multipart; grab the body and run
             emailObj['body'] = email.get_payload(decode=True)
