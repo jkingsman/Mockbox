@@ -47,7 +47,8 @@ function getAttachments(id) {
     lengthString += ': ';
 
     var attachmentLinks = messages[id].attachments.map(function(attachment){
-      return '<a href="' + attachment.data + '">' + attachment.name + '</a>';
+      var dataURI = 'data:' + attachment.type + ';' + attachment.transferEncoding + ',' + attachment.data;
+      return '<a href="' + dataURI + '" target="_blank">' + attachment.name + '</a>';
     }).join(', ');
 
     var attachmentString = lengthString + attachmentLinks;
