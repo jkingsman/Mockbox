@@ -41,12 +41,12 @@ function getAttachments(id) {
     return 'No Attachments';
   } else {
     var lengthString = messages[id].attachments.length + ' attachment';
-    if(messages[id].attachments.length > 1){
+    if (messages[id].attachments.length > 1) {
       lengthString += 's';
     }
     lengthString += ': ';
 
-    var attachmentLinks = messages[id].attachments.map(function(attachment){
+    var attachmentLinks = messages[id].attachments.map(function(attachment) {
       var dataURI = 'data:' + attachment.type + ';' + attachment.transferEncoding + ',' + attachment.data;
       return '<a href="' + dataURI + '" target="_blank">' + attachment.name + '</a>';
     }).join(', ');
@@ -103,7 +103,9 @@ function processMessage(event) {
 }
 
 window.onbeforeunload = function(e) {
-  return 'You will lose access to the contents of this Mockbox and be unable to use this address again.';
+  if (messages.length > 0) {
+    return 'You will lose access to the contents of this Mockbox and be unable to use this address again.';
+  }
 };
 
 if (checkSupport()) {
