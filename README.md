@@ -1,6 +1,8 @@
 # Mockbox
 Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alternative to [Mailtrap](https://mailtrap.io/): just quick and easy verification that your application is sending the emails you expect.
 
+# [Use it now! →](http://mockbox.io)
+
 ## Get Started
 1. Clone the mockbox repo
 2. `pip install` from the requirements file
