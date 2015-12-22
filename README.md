@@ -6,6 +6,8 @@ Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alt
 2. `pip install` from the requirements file
 3. `sudo python Mockbox.py`
 
+Make sure the appropriate ports are open (TCPs 80/443, 9000, 587).
+
 ## Local Server
 Don't need something web accessible? Run a local no-frills server with vanilla python:
 ```bash
