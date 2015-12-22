@@ -12,7 +12,7 @@ WebThread = Thread(target=Web.WebHandler, args=(queue,))
 MailboxThread.setDaemon(True)
 WebThread.setDaemon(True)
 
-log.startLogging(sys.stdout)
+log.startLogging(open('mockbox.log', 'w'))
 
 MailboxThread.start()
 WebThread.start()
