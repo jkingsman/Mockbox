@@ -20,7 +20,7 @@ class MailboxHandler():
         lc.start(2)
 
         server = CustomSMTPServer(self.binding, None)
-        print 'SMTP server starting on', self.binding[1], '(no username or password necessary)'
+        print 'SMTP starting on', self.binding[1]
         asyncore.loop(timeout=1)
 
 
