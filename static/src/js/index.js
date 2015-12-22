@@ -102,6 +102,10 @@ function processMessage(event) {
   notifyEmail(mailObj);
 }
 
+window.onbeforeunload = function(e) {
+  return 'You will lose access to the contents of this Mockbox and be unable to use this address again.';
+};
+
 if (checkSupport()) {
   var mailSocket = new WebSocket('ws://' + host + ':9000');
   mailSocket.onmessage = processMessage;
