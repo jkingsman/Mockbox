@@ -1,6 +1,9 @@
 # web
-httpPort = 80
 domain = 'mockbox.io'
+useSSL = True
+keyFile = 'keys/privkey.pem'
+certFile = 'keys/cacert.pem'
+
 
 # SMTP
 bindingPort = 587

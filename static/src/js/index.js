@@ -142,7 +142,8 @@ window.onbeforeunload = function(e) {
 };
 
 if (checkSupport()) {
-  var mailSocket = new WebSocket('ws://' + host + ':9000');
+  var wsProto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  var mailSocket = new WebSocket(wsProto + '://' + host + ':9000');
   mailSocket.onmessage = processMessage;
   mailSocket.onclose = processDisconnect;
 
