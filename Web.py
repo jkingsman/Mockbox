@@ -7,6 +7,7 @@ from twisted.web.resource import Resource
 from Addresses import CustomAddress
 import Config
 import json
+import os
 
 openSockets = {}
 
@@ -18,9 +19,10 @@ class WebHandler():
         lc = task.LoopingCall(self.processSockets)
         lc.start(2)
 
-        # fire up static server while we're here
+        # fire up static server while we're here, trying a couple ways to ignore the logs
         staticResource = File('./static/dist')
-        staticFactory = Site(staticResource)
+        staticFactory = Site(staticResource, logPath=os.devnull)
+        staticFactory.noisy = False
 
         if Config.useSSL:
             contextFactory = ssl.DefaultOpenSSLContextFactory(
@@ -34,6 +36,7 @@ class WebHandler():
             # WSS
             WSfactory=WebSocketServerFactory(u"wss://localhost:9000", debug=False)
             WSfactory.protocol = self.MyServerProtocol
+            WSfactory.noisy = False
             listenWS(WSfactory, contextFactory)
         else:
             # static HTTP serving
@@ -42,6 +45,7 @@ class WebHandler():
             # WS
             WSfactory=WebSocketServerFactory(u"ws://localhost:9000", debug=False)
             WSfactory.protocol = self.MyServerProtocol
+            WSfactory.noisy = False
             listenWS(WSfactory)
 
         reactor.run(installSignalHandlers=0) # no handlers because threads
