@@ -8,7 +8,7 @@ from Addresses import CustomAddress
 import Config
 import json
 
-openSockets = []
+openSockets = {}
 
 class WebHandler():
     def __init__(self, queue):
@@ -50,12 +50,11 @@ class WebHandler():
         while self.queue.qsize() > 0:
             emailEntry = self.queue.get()
 
-            if emailEntry['to'] not in [socket.id for socket in openSockets]:
+            try:
+                openSockets[emailEntry['to']].sendMessage(json.dumps(emailEntry).encode("utf8"))
+            except KeyError:
                 print 'Dropping message to', emailEntry['to'] + ': no such box'
-            else:
-                for openSocket in openSockets:
-                    if emailEntry['to'] == openSocket.id:
-                        openSocket.sendMessage(json.dumps(emailEntry).encode("utf8"))
+                pass
 
     class MyServerProtocol(WebSocketServerProtocol):
         def __init__(self, *args, **kwargs):
@@ -67,13 +66,9 @@ class WebHandler():
 
         def onOpen(self):
             print "Sent identification to " + self.id
-            openSockets.append(self)
+            openSockets[self.id] = self
             self.sendMessage(json.dumps([self.id, Config.bindingPort, Config.dropSize]).encode("utf8"))
 
         def onClose(self, wasClean, code, reason):
             print "Client connection closed with " + self.id
-            try:
-                # we have some weird issue where this is called twice...
-                openSockets.remove(self)
-            except ValueError:
-                pass
+            del openSockets[self.id]
