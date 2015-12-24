@@ -52,6 +52,11 @@ class WebHandler():
 
             try:
                 openSockets[emailEntry['to']].sendMessage(json.dumps(emailEntry).encode("utf8"))
+                print 'Dispatching email to', emailEntry['to']
+                if Config.logEmail:
+                    print "------------------BEGIN MESSAGE DUMP------------------"
+                    print json.dumps(emailEntry)
+                    print "-------------------END MESSAGE DUMP-------------------"
             except KeyError:
                 print 'Dropping message to', emailEntry['to'] + ': no such box'
                 pass
