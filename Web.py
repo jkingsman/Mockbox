@@ -1,30 +1,48 @@
-from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol
+from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol, listenWS
 from twisted.web.server import Site
 from twisted.web.static import File
-from twisted.internet import reactor, task
+from twisted.internet import reactor, task, ssl
+from twisted.web.util import Redirect
+from twisted.web.resource import Resource
 from Addresses import CustomAddress
-from Config import bindingPort, httpPort, dropSize
+import Config
 import json
 
 openSockets = []
 
 class WebHandler():
     def __init__(self, queue):
-        factory=WebSocketServerFactory("ws://localhost:9000", debug=False)
-        factory.protocol = self.MyServerProtocol
-
         self.queue = queue
 
         # set up the handler to drop emails from the message 'queue' into the main processing queue
         lc = task.LoopingCall(self.processSockets)
         lc.start(2)
 
-        reactor.listenTCP(9000, factory)
-
         # fire up static server while we're here
-        resource = File('./static/dist')
-        factory = Site(resource)
-        reactor.listenTCP(httpPort, factory)
+        staticResource = File('./static/dist')
+        staticFactory = Site(staticResource)
+
+        if Config.useSSL:
+            contextFactory = ssl.DefaultOpenSSLContextFactory(
+                Config.keyFile,
+                Config.certFile
+            )
+
+            # static HTTPS serving
+            reactor.listenSSL(443, staticFactory, contextFactory)
+
+            # WSS
+            WSfactory=WebSocketServerFactory(u"wss://localhost:9000", debug=False)
+            WSfactory.protocol = self.MyServerProtocol
+            listenWS(WSfactory, contextFactory)
+        else:
+            # static HTTP serving
+            reactor.listenTCP(80, staticFactory)
+
+            # WS
+            WSfactory.protocol = self.MyServerProtocol
+            WSfactory=WebSocketServerFactory(u"ws://localhost:9000", debug=False)
+            listenWS(WSfactory)
 
         reactor.run(installSignalHandlers=0) # no handlers because threads
 
@@ -50,8 +68,12 @@ class WebHandler():
         def onOpen(self):
             print "Sent identification to " + self.id
             openSockets.append(self)
-            self.sendMessage(json.dumps([self.id, bindingPort, dropSize]).encode("utf8"))
+            self.sendMessage(json.dumps([self.id, Config.bindingPort, Config.dropSize]).encode("utf8"))
 
         def onClose(self, wasClean, code, reason):
             print "Client connection closed with " + self.id
-            openSockets.remove(self)
+            try:
+                # we have some weird issue where this is called twice...
+                openSockets.remove(self)
+            except ValueError:
+                pass
