@@ -40,8 +40,8 @@ class WebHandler():
             reactor.listenTCP(80, staticFactory)
 
             # WS
-            WSfactory.protocol = self.MyServerProtocol
             WSfactory=WebSocketServerFactory(u"ws://localhost:9000", debug=False)
+            WSfactory.protocol = self.MyServerProtocol
             listenWS(WSfactory)
 
         reactor.run(installSignalHandlers=0) # no handlers because threads
