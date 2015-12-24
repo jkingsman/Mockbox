@@ -8,13 +8,16 @@ block content
 		.container
 			.section
 				// Icon Section
-				.row
+				.row#fullInfo
 					.col.s12
 						h4 Mockbox is a simple, free platform for 
 							strong SMTP client testing.
 						p Need to be sure that your automated emails are going out with the content you expect, but don't want to provide your personal email credentials, or want a free alternative to Mailtrap? Use Mockbox.
 						p 
 							strong Mockbox funnels emails straight from the SMTP interface to your browser - no sign up, no storage, no logins, no hassle. Quick, easy, and ephemeral.
+							|  You can also use the 
+							a(href="/?quick") Quick View
+							| .
 						h4 Get started!
 						h4(style='display: inline') &#9312;
 						h5(style='display: inline') Set your SMTP server to 
@@ -36,6 +39,19 @@ block content
 						p * Emails will not be accessible, nor will you be able to recover or resume use of the address after you leave this page. Emails with total size >
 							span#dropSize
 							|  kB will not be displayed.
+				.row#quickInfo(style='display: none;')
+					.col.s12
+						h5.center-align
+							span#quickMailAddress [email]
+							a#quickCopyLink(href='#', data-clipboard-text='address not loaded')
+								i.material-icons assignment
+							| at 
+							span#quickServerAddress [server]
+							| :
+							span#quickServerPort [port]
+							|  (
+							span#quickDropSize
+							| kB limit)
 				.row
 					.col.s5
 						a.waves-effect.waves-light.btn(onclick='showDemo();')

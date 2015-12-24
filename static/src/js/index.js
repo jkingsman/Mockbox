@@ -71,12 +71,12 @@ function processMessage(event) {
   if (!addressLoaded) {
     // first payload is always our config data, a JSON array of [address, port, maxbytes]
     var config = JSON.parse(event.data);
-    $('#serverAddress').html(host);
-    $('#mailAddress').html(config[0]);
-    $('#serverPort').html(config[1]);
-    $('#dropSize').html(config[2] / 1000);
+    $('#serverAddress, #quickServerAddress').html(host);
+    $('#mailAddress, #quickMailAddress').html(config[0]);
+    $('#serverPort, #quickServerPort').html(config[1]);
+    $('#dropSize, #quickDropSize').html(config[2] / 1000);
 
-    $('#copyLink').attr('data-clipboard-text', config[0]);
+    $('#copyLink, #quickCopyLink').attr('data-clipboard-text', config[0]);
     addressLoaded = true;
     return;
   }
@@ -141,6 +141,11 @@ window.onbeforeunload = function(e) {
   }
 };
 
+if(location.search === '?quick'){
+  $('#fullInfo').hide();
+  $('#quickInfo').show();
+}
+
 if (checkSupport()) {
   var wsProto = window.location.protocol === 'https:' ? 'wss' : 'ws';
   var mailSocket = new WebSocket(wsProto + '://' + host + ':9000');
@@ -149,6 +154,7 @@ if (checkSupport()) {
 
   // fire up our copy button (has to be selected to work)
   var clipboard = new Clipboard('#copyLink');
+  var quickClipboard = new Clipboard('#quickCopyLink');
 
   checkNotify();
 }
