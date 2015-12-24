@@ -77,6 +77,12 @@ gulp.task('copy', function () {
   .pipe(connect.reload());
 });
 
+gulp.task('copy-flat', function () {
+  gulp.src(['./src/flat/**/*'])
+  .pipe(gulp.dest('./dist'))
+  .pipe(connect.reload());
+});
+
 //serve it
 gulp.task('webserver', function() {
   connect.server({
@@ -85,11 +91,11 @@ gulp.task('webserver', function() {
   });
 });
 
-gulp.task('default', ['empty', 'hint', 'html', 'css', 'js-lib', 'js-main', 'copy']);
+gulp.task('default', ['empty', 'hint', 'html', 'css', 'js-lib', 'js-main', 'copy', 'copy-flat']);
 
 //realtime watching
 gulp.task('realtime', function() {
-  gulp.watch('./src/**/*', ['hint', 'html', 'css', 'js-lib', 'js-main', 'copy']);
+  gulp.watch('./src/**/*', ['hint', 'html', 'css', 'js-lib', 'js-main', 'copy', 'copy-flat']);
 });
 
 gulp.task('watch', ['realtime', 'default', 'webserver']);

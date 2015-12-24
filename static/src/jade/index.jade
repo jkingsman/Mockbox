@@ -36,6 +36,12 @@ block content
 						p * Emails will not be accessible, nor will you be able to recover or resume use of the address after you leave this page. Emails with total size >
 							span#dropSize
 							|  kB will not be displayed.
+						a.waves-effect.waves-light.btn(onclick='showDemo();')
+							i.material-icons.left play_arrow
+							| Show Demo Email
+						a.waves-effect.waves-light.btn.right(onclick='clearEmails();')
+							i.material-icons.left delete
+							| Clear Emails
 						hr
 				.row
 					.col.s12
@@ -46,7 +52,7 @@ block content
 			#rawModal.modal
 				.modal-content
 					h4 Raw Message
-					textarea#rawArea(style='height: 20rem;')
+					textarea#rawArea(style='height: 20rem;', readonly)
 				.modal-footer
 					a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Close
 block scripts

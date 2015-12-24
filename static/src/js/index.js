@@ -22,13 +22,15 @@ function checkNotify() {
 }
 
 function notifyEmail(email) {
-  var myNotification = new Notify(email.from, {
-    icon: '/img/ios-desktop.png',
-    body: email.body,
-    timeout: 4
-  });
+  if (!document.hasFocus()) {
+    var myNotification = new Notify(email.from, {
+      icon: '/img/ios-desktop.png',
+      body: email.body,
+      timeout: 4
+    });
 
-  myNotification.show();
+    myNotification.show();
+  }
 }
 
 function showRaw(id) {
@@ -100,6 +102,24 @@ function processMessage(event) {
   $('#noMessages').hide();
   $('#messageCollection').prepend(message);
   notifyEmail(mailObj);
+}
+
+function showDemo() {
+  $.ajax({
+    url: "demo.txt",
+    dataType: "text",
+    success: function(data) {
+      var fakeEvent = {};
+      fakeEvent.data = data;
+      processMessage(fakeEvent);
+    }
+  });
+}
+
+function clearEmails() {
+  messages = [];
+  $('#noMessages').show();
+  $('#messageCollection').empty();
 }
 
 window.onbeforeunload = function(e) {
