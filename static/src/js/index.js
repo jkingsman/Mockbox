@@ -4,6 +4,7 @@
 var host = window.location.hostname; // edit this if needed
 var messages = [];
 var addressLoaded = false;
+var unreadEmails = 0;
 
 function checkSupport() {
   var support = "MozWebSocket" in window ? 'MozWebSocket' : ("WebSocket" in window ? 'WebSocket' : null);
@@ -22,7 +23,7 @@ function checkNotify() {
 }
 
 function notifyEmail(email) {
-  if (!document.hasFocus()) {
+  if (!document.hasFocus() && $("#sendNotifications").is(':checked')) {
     var myNotification = new Notify(email.from, {
       icon: '/img/ios-desktop.png',
       body: email.body,
@@ -30,6 +31,9 @@ function notifyEmail(email) {
     });
 
     myNotification.show();
+
+    unreadEmails += 1;
+    document.title = 'Mockbox (' + unreadEmails + ' new)';
   }
 }
 
@@ -121,6 +125,15 @@ function clearEmails() {
   $('#noMessages').show();
   $('#messageCollection').empty();
 }
+
+// when we focus in, remove the unread notification
+var removeUnread = function(event) {
+    unreadEmails = 0;
+    document.title = 'Mockbox';
+};
+
+document.body.addEventListener('focus', removeUnread, true); //Non-IE
+document.body.onfocusin = removeUnread; //IE
 
 window.onbeforeunload = function(e) {
   if (messages.length > 0) {

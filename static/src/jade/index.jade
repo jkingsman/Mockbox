@@ -36,13 +36,19 @@ block content
 						p * Emails will not be accessible, nor will you be able to recover or resume use of the address after you leave this page. Emails with total size >
 							span#dropSize
 							|  kB will not be displayed.
+				.row
+					.col.s5
 						a.waves-effect.waves-light.btn(onclick='showDemo();')
 							i.material-icons.left play_arrow
 							| Show Demo Email
+					.col.s3
+						input#sendNotifications(type='checkbox', checked)
+						label(for='sendNotifications') Send Notifications
+					.col.s4
 						a.waves-effect.waves-light.btn.right(onclick='clearEmails();')
 							i.material-icons.left delete
 							| Clear Emails
-						hr
+				hr
 				.row
 					.col.s12
 					p.center-align#noMessages
