@@ -1,24 +1,15 @@
 import random
+from numpy import product
 from Config import domain
 
 class CustomAddress():
+    def __init__(self):
+        self.vowels = 'aeiou'
+        self.consonants = 'bcdfgjklmnprstvz' # no hqx for pronouncability
+        self.choices = map(lambda x: "".join(x), product(self.consonants, self.vowels))
+        self.letterCount = 8
+        self.numberCount = 2
+
     def get(self):
-        letterCount = 8
-        numberCount = 2
-        vowels = 'aeiou'
-        consonants = 'bcdfgjklmnprstvz' # no hqx for pronouncability
-        randString = ''
-
-        for i in range(letterCount):
-            if len(randString) == 0:
-                randString += random.choice(consonants)
-            else:
-                if randString[-1:] in consonants:
-                    randString += random.choice(vowels)
-                else:
-                    randString += random.choice(consonants)
-
-        randString += str(random.randint(10**(numberCount-1), (10**numberCount)-1))
-        randEmail = randString + '@' + domain
-
-        return randEmail
+        return "".join(choice(self.choices) for _ in xrange(self.letterCount / 2))[:self.letterCount] + \
+                       str(randint(10**(self.numberCount-1), (10**self.numberCount)-1))
