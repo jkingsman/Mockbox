@@ -53,17 +53,17 @@ block content
 							span#quickDropSize
 							| kB limit)
 				.row
-					.col.s5
-						a.waves-effect.waves-light.btn(onclick='showDemo();')
+					.col.m5.s6
+						a.waves-effect.waves-light.btn(onclick='showDemo();', style='padding-left: 5px; padding-right: 5-10px;')
 							i.material-icons.left play_arrow
-							| Show Demo Email
-					.col.s3
+							| Demo
+					.col.m3.hide-on-small-only
 						input#sendNotifications(type='checkbox', checked)
 						label(for='sendNotifications') Send Desktop Notifications
-					.col.s4
-						a.waves-effect.waves-light.btn.right(onclick='clearEmails();')
+					.col.m4.s6
+						a.waves-effect.waves-light.btn.right(onclick='clearEmails();', style='padding-left: 5px; padding-right: 10px;')
 							i.material-icons.left delete
-							| Clear Emails
+							| Clear
 				hr
 				.row
 					.col.s12
