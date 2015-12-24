@@ -1,6 +1,6 @@
 # web
 domain = 'mockbox.io'
-useSSL = True
+useSSL = False
 keyFile = 'keys/privkey.pem'
 certFile = 'keys/cacert.pem'
 
