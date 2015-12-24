@@ -67,10 +67,9 @@ class WebHandler():
             self.id = CustomAddress().get()
 
         def onConnect(self, request):
-            print "Client connection from " + self.id + " at: {0}".format(request.peer)
+            print "Client connection from " + self.id + " at {0}".format(request.peer)
 
         def onOpen(self):
-            print "Sent identification to " + self.id
             openSockets[self.id] = self
             self.sendMessage(json.dumps([self.id, Config.bindingPort, Config.dropSize]).encode("utf8"))
 
