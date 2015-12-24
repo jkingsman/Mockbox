@@ -21,6 +21,8 @@ Front end development uses `gulp`; write your code in `/static/src/` and run `gu
 
 To customize the site to your domain name, change the `domain` in `Config.py`, but it will still function correctly if you fail to set that; it will just generate email addresses at the `mockbox.io` domain.
 
+Running Mockbox with the `-v` flag will output logging to std. out, not the log file - handy for debugging without tailing.
+
 ### Future Development/TODO
 * Testing
 * Refactor front end (at least away from jQuery; ideally to a front end framework)
