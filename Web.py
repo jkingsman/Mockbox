@@ -75,4 +75,7 @@ class WebHandler():
 
         def onClose(self, wasClean, code, reason):
             print "Client connection closed with " + self.id
-            del openSockets[self.id]
+            try:
+                del openSockets[self.id]
+            except KeyError:
+                pass
