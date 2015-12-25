@@ -126,10 +126,16 @@ function clearEmails() {
   $('#messageCollection').empty();
 }
 
+function showQuick() {
+  $('#fullInfo').hide();
+  $('#quickInfo').show();
+  window.location.hash = '#quick';
+}
+
 // when we focus in, remove the unread notification
 var removeUnread = function(event) {
-    unreadEmails = 0;
-    document.title = 'Mockbox';
+  unreadEmails = 0;
+  document.title = 'Mockbox';
 };
 
 document.body.addEventListener('focus', removeUnread, true); //Non-IE
@@ -141,9 +147,8 @@ window.onbeforeunload = function(e) {
   }
 };
 
-if(location.search === '?quick'){
-  $('#fullInfo').hide();
-  $('#quickInfo').show();
+if (window.location.hash === '#quick') {
+  showQuick();
 }
 
 if (checkSupport()) {
