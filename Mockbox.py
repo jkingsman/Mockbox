@@ -21,7 +21,7 @@ WebThread.setDaemon(True)
 if args.verbose:
    log.startLogging(sys.stdout)
 else:
-    log.startLogging(open('mockbox.log', 'w'))
+    log.startLogging(open('mockbox.log', 'a'))
 
 MailboxThread.start()
 WebThread.start()
