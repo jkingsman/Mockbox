@@ -129,7 +129,6 @@ function clearEmails() {
 function showQuick() {
   $('#fullInfo').hide();
   $('#quickInfo').show();
-  window.location.hash = '#quick';
 }
 
 // when we focus in, remove the unread notification
