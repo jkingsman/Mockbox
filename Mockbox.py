@@ -2,7 +2,8 @@ from threading import Thread
 from Queue import Queue
 from twisted.python import log
 import time
-import Mailbox, Web
+import Mailbox
+import Web
 import sys
 import argparse
 
@@ -19,7 +20,7 @@ MailboxThread.setDaemon(True)
 WebThread.setDaemon(True)
 
 if args.verbose:
-   log.startLogging(sys.stdout)
+    log.startLogging(sys.stdout)
 else:
     log.startLogging(open('mockbox.log', 'a'))
 

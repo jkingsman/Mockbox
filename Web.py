@@ -11,15 +11,16 @@ import os
 
 openSockets = {}
 
+
 class WebHandler():
     def __init__(self, queue):
         self.queue = queue
 
-        # set up the handler to drop emails from the message 'queue' into the main processing queue
+        # set up handler to drop emails from the 'queue' into the main queue
         lc = task.LoopingCall(self.processSockets)
         lc.start(2)
 
-        # fire up static server while we're here, trying a couple ways to ignore the logs
+        # fire up static server while we're here
         staticResource = File('./static/dist')
         staticFactory = Site(staticResource, logPath=os.devnull)
         staticFactory.noisy = False
@@ -34,7 +35,7 @@ class WebHandler():
             reactor.listenSSL(443, staticFactory, contextFactory)
 
             # WSS
-            WSfactory=WebSocketServerFactory(u"wss://localhost:9000", debug=False)
+            WSfactory = WebSocketServerFactory(u"wss://localhost:9000", debug=False)
             WSfactory.protocol = self.MyServerProtocol
             WSfactory.noisy = False
             listenWS(WSfactory, contextFactory)
@@ -43,12 +44,13 @@ class WebHandler():
             reactor.listenTCP(80, staticFactory)
 
             # WS
-            WSfactory=WebSocketServerFactory(u"ws://localhost:9000", debug=False)
+            WSfactory = WebSocketServerFactory(u"ws://localhost:9000", debug=False)
             WSfactory.protocol = self.MyServerProtocol
             WSfactory.noisy = False
             listenWS(WSfactory)
 
-        reactor.run(installSignalHandlers=0) # no handlers because threads
+        # no handlers because threads
+        reactor.run(installSignalHandlers=0)
 
     def processSockets(self):
         while self.queue.qsize() > 0:
