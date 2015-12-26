@@ -6,7 +6,7 @@ Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alt
 ## Get Started
 ```bash
 $ git clone https://github.com/jkingsman/Mockbox.git # Clone the mockbox repo
-$ pip install -r Requirements.txt # install dependencies
+$ pip install -r requirements.txt # install dependencies
 $ sudo python Mockbox.py # run that puppy
 ```
 
