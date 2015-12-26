@@ -33,3 +33,6 @@ Don't need something web accessible? Run a local no-frills server with vanilla p
 ```bash
 sudo python -m smtpd -c DebuggingServer -n localhost:25
 ```
+
+----
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&url=https://github.com/jkingsman/Mockbox&title=Mockbox&language=en&tags=github&category=software)
