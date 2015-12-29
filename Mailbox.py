@@ -8,6 +8,7 @@ from Config import bindingPort, bindingIP, dropSize
 
 staged = []
 
+
 class MailboxHandler():
     def __init__(self, queue):
         self.binding = (bindingIP, bindingPort)

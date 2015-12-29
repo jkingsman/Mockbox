@@ -7,7 +7,9 @@ certFile = 'keys/cacert.pem'
 # SMTP
 bindingPort = 587
 bindingIP = '0.0.0.0'
-dropSize = 10000000 # bytes
+# dropSize in bytes
+dropSize = 10000000
 
 # General
-logEmail = False # warning! This can fill your disk up really quickly.
+# warning! This can fill your disk up really quickly.
+logEmail = False
