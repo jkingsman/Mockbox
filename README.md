@@ -1,7 +1,11 @@
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&url=https://github.com/jkingsman/Mockbox&title=Mockbox&language=en&tags=github&category=software)
+
 # Mockbox
 Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alternative to [Mailtrap](https://mailtrap.io/): just quick and easy verification that your application is sending the emails you expect.
 
 # [Use it now! →](https://mockbox.io)
+
+#### Note that Mockbox is **not** an ephemeral email address system. It is solely for simulating SMTP servers to SMTP clients; emails sent from a regular address won't make it.
 
 ## Get Started
 ```bash
@@ -33,6 +37,3 @@ Don't need something web accessible? Run a local no-frills server with vanilla p
 ```bash
 sudo python -m smtpd -c DebuggingServer -n localhost:25
 ```
-
-----
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jkingsman&url=https://github.com/jkingsman/Mockbox&title=Mockbox&language=en&tags=github&category=software)
