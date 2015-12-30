@@ -32,7 +32,7 @@ class WebHandler():
             )
 
             # static HTTPS serving
-            reactor.listenSSL(443, staticFactory, contextFactory)
+            reactor.listenSSL(Config.httpsPort, staticFactory, contextFactory)
 
             # WSS
             WSfactory = WebSocketServerFactory(u"wss://localhost:9000", debug=False)
@@ -41,7 +41,8 @@ class WebHandler():
             listenWS(WSfactory, contextFactory)
         else:
             # static HTTP serving
-            reactor.listenTCP(80, staticFactory)
+            reactor.listenTCP(Config.httpPort, staticFactory)
+
 
             # WS
             WSfactory = WebSocketServerFactory(u"ws://localhost:9000", debug=False)
