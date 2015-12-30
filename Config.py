@@ -3,7 +3,7 @@ domain = 'mockbox.io'
 useSSL = False
 keyFile = 'keys/privkey.pem'
 certFile = 'keys/cacert.pem'
-httpPort = 81
+httpPort = 80
 httpsPort = 443
 
 # SMTP
