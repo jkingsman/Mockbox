@@ -3,8 +3,6 @@
 # Mockbox
 Free, ephemeral, and fast online SMTP server mock. The no frills, no sign-up alternative to [Mailtrap](https://mailtrap.io/): just quick and easy verification that your application is sending the emails you expect.
 
-# [Use it now! →](https://mockbox.io)
-
 #### Note that Mockbox is **not** an ephemeral email address system. It is solely for simulating SMTP servers to SMTP clients; emails sent from a regular address won't make it.
 
 ## Get Started
